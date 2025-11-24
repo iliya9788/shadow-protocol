@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terminal Access - Shadow Protocol</title>
+</head>
+<body>
+    <h2>TERMINAL ACCESS</h2>
+
+    {% if response %}
+        <p>> {{ response }}</p>
+    {% endif %}
+
+    <form action="/terminal" method="POST">
+        <input type="text" name="command" autofocus>
+        <button type="submit">Enter</button>
+    </form>
+
+    <p>Type "scan network" to begin.</p>
+</body>
+</html>
