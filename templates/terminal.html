@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Terminal Access - Shadow Protocol</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shadow Protocol – Terminal</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/css/style.css" />
+
+    <!-- Matrix Terminal Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 </head>
+
 <body>
-    <h2>TERMINAL ACCESS</h2>
 
-    {% if response %}
-        <p>> {{ response }}</p>
-    {% endif %}
+    <div id="terminal-container">
+        
+        <!-- Terminal Output -->
+        <div id="terminal-output">
 
-    <form action="/terminal" method="POST">
-        <input type="text" name="command" autofocus>
-        <button type="submit">Enter</button>
-    </form>
+            <!-- INTRO STORY (auto-shown before gameplay) -->
+            <p>BOOTING SHADOW PROTOCOL...</p>
+            <p>ESTABLISHING SECURE LINK...</p>
+            <p class="system">DIVISION-71 // ENCRYPTED CHANNEL ONLINE</p>
+            <p>AGENT: Your signal is stabilized for now.</p>
+            <p>A hostile network surrounds you — nothing here is friendly.</p>
+            <p>The system suggests beginning with a network scan.</p>
+            <p class="blink">Type: <b>scan network</b> to begin.</p>
 
-    <p>Type "scan network" to begin.</p>
+        </div>
+
+        <!-- Input Line -->
+        <form id="terminal-form">
+            <span class="prompt">>></span>
+            <input id="command-input" type="text" autocomplete="off" placeholder="enter command..." autofocus />
+        </form>
+    </div>
+
+    <!-- JS -->
+    <script src="/static/js/terminal.js"></script>
 </body>
 </html>
