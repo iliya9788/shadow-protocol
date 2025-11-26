@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRACE DETECTED</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #120000;
+            color: #ff3333;
+            font-family: "Consolas", monospace;
+            overflow: hidden;
+            animation: shake 0.2s infinite;
+        }
+
+        /* لرزش */
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 1px); }
+            75% { transform: translate(1px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* کانتینر متن */
+        .center {
+            position: absolute;
+            top: 35%;
+            width: 100%;
+            text-align: center;
+            font-size: 28px;
+            line-height: 45px;
+            letter-spacing: 2px;
+        }
+
+        .glitch {
+            font-size: 40px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            animation: flicker 0.2s infinite;
+        }
+
+        /* افکت glitch */
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: #ff0000;
+            animation: glitchTop 0.3s infinite;
+        }
+
+        .glitch::after {
+            color: #ff6666;
+            animation: glitchBot 0.35s infinite;
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 1px); }
+            100% { transform: translate(-1px, -1px); }
+        }
+
+        @keyframes glitchBot {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-1px, -2px); }
+            100% { transform: translate(1px, 1px); }
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* دکمه بازگشت */
+        .retry {
+            margin-top: 40px;
+            font-size: 20px;
+            color: #ff4444;
+            text-decoration: none;
+            border: 1px solid #ff4444;
+            padding: 12px 25px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .retry:hover {
+            color: #fff;
+            background: #ff0000;
+            border-color: #fff;
+        }
+
+        /* دکمه فعال‌سازی صدا */
+        #sound-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 25px;
+            background: #ff0000;
+            color: #ffffff;
+            font-family: Consolas;
+            font-size: 18px;
+            border: 1px solid #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+        <div class="glitch" data-text="TRACE DETECTED">TRACE DETECTED</div>
+
+        <p>YOUR SIGNAL HAS BEEN EXPOSED</p>
+        <p>HOSTILE SYSTEM HAS LOCKED YOUR LOCATION</p>
+        <p>CONNECTION TERMINATED</p>
+
+        <a href="/start" class="retry">RECONNECT</a>
+    </div>
+
+    <!-- صدا -->
+    <audio id="alarm-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2fa5573d8e.mp3?filename=sci-fi-alarm-108472.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- دکمه فعال‌سازی صدا -->
+    <button id="sound-btn">ENABLE SOUND</button>
+
+    <script>
+        const alarm = document.getElementById("alarm-sound");
+        const btn = document.getElementById("sound-btn");
+
+        // تلاش اولیه برای پخش خودکار
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                alarm.volume = 1.0;
+                alarm.play().catch(() => {
+                    console.log("Autoplay blocked. Waiting for user click...");
+                });
+            }, 300);
+        });
+
+        // فعال‌سازی تضمینی با کلیک
+        btn.addEventListener("click", () => {
+            alarm.volume = 1.0;
+            alarm.play();
+            btn.remove(); // حذف دکمه بعد از فعال کردن صدا
+        });
+    </script>
+
+</body>
+</html>

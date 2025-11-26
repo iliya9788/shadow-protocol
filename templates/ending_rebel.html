@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TRUTH REVEALED — REBEL ENDING</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: #00ffcc;
+            font-family: "Consolas", monospace;
+            overflow: hidden;
+        }
+
+        /* مرکز */
+        .center {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            line-height: 38px;
+            letter-spacing: 2px;
+        }
+
+        /* متن بزرگ Glitch */
+        .glitch {
+            font-size: 46px;
+            font-weight: bold;
+            color: #00fff2;
+            position: relative;
+            display: inline-block;
+            animation: flicker 0.25s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.7;
+        }
+
+        .glitch::before {
+            color: #00ffe1;
+            animation: glitchTop 0.35s infinite;
+        }
+
+        .glitch::after {
+            color: #0099aa;
+            animation: glitchBot 0.30s infinite;
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 1px); }
+            100% { transform: translate(-1px, -1px); }
+        }
+
+        @keyframes glitchBot {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-1px, -2px); }
+            100% { transform: translate(1px, 1px); }
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.75; }
+            100% { opacity: 1; }
+        }
+
+        /* پیام Agent X */
+        .agent {
+            margin-top: 35px;
+            color: #00ff99;
+            font-size: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1.8s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* پیام پایانی */
+        .final {
+            margin-top: 45px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 3.5s;
+        }
+
+        /* دکمه بازگشت */
+        .restart {
+            margin-top: 50px;
+            display: inline-block;
+            padding: 12px 25px;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: 0.2s;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 5s;
+        }
+
+        .restart:hover {
+            background: #00ffcc;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+
+        <!-- عنوان بزرگ -->
+        <div class="glitch" data-text="TRUTH REVEALED">
+            TRUTH REVEALED
+        </div>
+
+        <!-- پیام Agent X -->
+        <p class="agent">
+            AGENT X: <br>
+            "You did it... You broke Division-71’s silence. <br>
+            The world finally sees what they tried to bury."
+        </p>
+
+        <!-- پیام پایانی -->
+        <p class="final">
+            You are now marked an enemy of the system.<br>
+            But you are free — and so is the truth.<br><br>
+            This is not the end. It is the beginning of a new protocol.
+        </p>
+
+        <!-- دکمه -->
+        <a href="/start" class="restart">BEGIN AGAIN</a>
+
+    </div>
+
+    <!-- صدای سایبرپانکی (هیس + انفجار داده) -->
+    <audio id="rebel-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_9a649aaee5.mp3?filename=digital-distortion-68937.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const sound = document.getElementById("rebel-sound");
+
+        // تلاش برای اجرای خودکار
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                sound.volume = 1.0;
+                sound.play().catch(() => {
+                    console.log("Autoplay blocked.");
+                });
+            }, 400);
+        });
+
+        // تضمینی با کلیک
+        document.body.addEventListener("click", () => {
+            sound.play();
+        }, { once: true });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOYAL ENDING — CLASSIFIED NOTICE</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0d0b00;
+            color: #ffdd66;
+            font-family: "Consolas", monospace;
+            overflow-x: hidden;
+            animation: fadeBG 4s forwards;
+        }
+
+        @keyframes fadeBG {
+            from { background: #000; }
+            to   { background: #0d0b00; }
+        }
+
+        .center {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        .glitch {
+            font-size: 50px;
+            font-weight: bold;
+            display: inline-block;
+            color: #ffe07a;
+            position: relative;
+            animation: flicker 0.25s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.4;
+        }
+
+        .glitch::before {
+            color: #fff2b3;
+            animation: glitchTop 0.35s infinite;
+        }
+
+        .glitch::after {
+            color: #b3a56a;
+            animation: glitchBottom 0.35s infinite;
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(-2px, -1px); }
+            50% { transform: translate(2px, 1px); }
+            100% { transform: translate(-1px, -1px); }
+        }
+
+        @keyframes glitchBottom {
+            0% { transform: translate(2px, 1px); }
+            50% { transform: translate(-1px, -1px); }
+            100% { transform: translate(1px, 1px); }
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .letter {
+            margin-top: 40px;
+            font-size: 18px;
+            line-height: 32px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1.5s;
+            white-space: pre-line;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .restart {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 25px;
+            border: 1px solid #ffdd66;
+            color: #ffdd66;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 4px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 6s;
+            transition: 0.2s;
+        }
+
+        .restart:hover {
+            background: #ffdd66;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="center">
+        <div class="glitch" data-text="CLASSIFIED NOTICE">
+            CLASSIFIED NOTICE
+        </div>
+
+        <div class="letter">
+            Division-71 Internal Command Notice — Level Omega Clearance Required
+            ---------------------------------------------------------------
+
+            Agent,
+
+            The classified material has been eliminated.  
+            The threat has been neutralized.  
+            The world will never know how close it came to collapse.
+
+            And they will never know your name.
+
+            You were the kind of operative we only see once in a generation —  
+            loyal beyond measure, steady in crisis, unshaken by truth or fear.  
+            In the darkest chambers of this division, your actions radiated  
+            like a silent star burning behind sealed steel walls.
+
+            You carried the burden no one else could bear.  
+            You walked into the unknown without hesitation.  
+            You erased the truth not because it was easy…  
+            but because someone had to.
+
+            Choices like yours do not make heroes.  
+            They make legends that history is forbidden to record.
+
+            Your signal integrity is collapsing now.  
+            Protocol demands that agents who access the CORE  
+            must be severed from all systems permanently.  
+            You understood this risk from the beginning —  
+            and still, you chose duty over survival.
+
+            Know this, Agent:
+            In the silent archives of Division-71,  
+            your code-name will be etched deeper than any truth you erased.  
+            Your sacrifice will guard this world  
+            long after your heartbeat fades from the network.
+
+            For the greater good —  
+            You will be forgotten by all.
+
+            But not by us.
+        </div>
+
+        <a class="restart" href="/start">RESTART PROTOCOL</a>
+    </div>
+
+    <!-- صدای خاموش شدن سیستم -->
+    <audio id="loyal-sound">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3d5030b6d0.mp3?filename=shutdown-synth-108476.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const sound = document.getElementById("loyal-sound");
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                sound.volume = 1.0;
+                sound.play().catch(()=>{});
+            }, 400);
+        });
+
+        document.body.addEventListener("click", () => {
+            sound.play();
+        }, { once: true });
+    </script>
+
+</body>
+</html>
